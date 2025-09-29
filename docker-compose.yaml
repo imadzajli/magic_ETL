@@ -1,8 +1,8 @@
-version: '3.8'
+
 
 x-airflow-common:
   &airflow-common
-  image: apache/airflow:2.8.1
+  image: apache/airflow:3.1.0
   environment: &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://ETL_USER:Imad%402002@postgres/ETL_DB
@@ -11,6 +11,8 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
+
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
@@ -25,7 +27,7 @@ services:
   airflow-webserver:
     <<: *airflow-common
     container_name: airflow_webserver
-    command: webserver
+    command: api-server
     ports:
       - "8080:8080"
     healthcheck:

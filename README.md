@@ -56,5 +56,7 @@ def load(**args):
 
 - utils : Contains useful code written by me to be used each time instead of writting it again and again, such us connection hadling scripts, configuration files...
 
-- config.json file : contains configuration needed to run the ETL correctly
+- config.json file : contains configuration needed to run the ETL correctly.
+
+- desc.md : in each ETL there is a desc file explaining the usecase for that real life scenario used on that ETL example (airflow sample).
  
