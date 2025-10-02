@@ -2,9 +2,9 @@
 
 mkdir -p ./dags ./logs ./plugins ./config
 
-echo -e "AIRFLOW_UID=$(id -u)" > .env
+echo -e "AIRFLOW_UID=50000" > .env
 
-docker compose up airflow-init
+docker compose up -d airflow-init
 
 docker compose up -d
 
