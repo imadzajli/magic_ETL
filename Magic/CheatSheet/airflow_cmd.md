@@ -21,3 +21,21 @@ airflow dags report
 ```bash
 airflow dags reserialize
 ````
+
+### list runs for a dag
+
+```bash
+airflow dags list-runs <<dag_name>>
+```
+
+### list task from a dag
+
+```bash
+airflow tasks list <<dag_name>>
+```
+
+### check state of a task from a dag on a run
+
+```bash
+airflow tasks state <<dag_name>> <<task_id>> <<run_id>>
+```
